@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>Roy Evan Sia</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+       <script type="text/javascript">
+        var bToggle = true;
+/*
+		$(document).ready(function(){
+				var x = pane1.offsetLeft - 200;
+				$(".label").css("left",x);
+			});
+		window.onresize = function(){
+		    
+		};
+*/
+       
+        function updatePos()
+        {
+            var x = pane1.offsetLeft - 200;
+            $(".label").css("left",x);
+        }
+
+        function transform()
+        {
+            if (bToggle)
+            {
+                $("#pane1").css("-o-transform","rotate(-45deg)");
+                $("#pane2").css("-o-transform","rotate(45deg)");
+                $("#pane3").css("-o-transform","rotate(135deg)");
+                $("#pane4").css("-o-transform","rotate(225deg)");
+                
+                $("#pane1").css("-webkit-transform","rotate(-45deg)");
+                $("#pane2").css("-webkit-transform","rotate(45deg)");
+                $("#pane3").css("-webkit-transform","rotate(135deg)");
+                $("#pane4").css("-webkit-transform","rotate(225deg)");
+				
+				$("#pane1").css("-moz-transform","rotate(-45deg)");
+                $("#pane2").css("-moz-transform","rotate(45deg)");
+                $("#pane3").css("-moz-transform","rotate(135deg)");
+                $("#pane4").css("-moz-transform","rotate(225deg)");
+            }
+            else
+            { 
+				$(".panel").css("-o-transform","rotate(0deg)");
+				$(".panel").css("-webkit-transform","rotate(0deg)");
+				$(".panel").css("-moz-transform","rotate(0deg)");
+            }
+            
+            bToggle = !bToggle;
+        }      
+    </script>
+       <style type="text/css">
+        body
+        {
+        	width:80%;
+        	margin:auto;
+        	
+        }
+        .panel
+        {
+        	width:200px;
+        	height:200px;
+        	position:absolute;
+        	left:50%;
+        	top:20%;        	
+        	
+        	-o-transform-origin: 0% 100%;
+        	-webkit-transform-origin: 0% 100%;
+			-moz-transform-origin: 0% 100%;
+        	
+        	-o-transition: -o-transform 2s;
+        	-webkit-transition: -webkit-transform 2s;
+			-moz-transition: -moz-transform 2s;
+        	
+        	text-align:justify;
+        	word-wrap:break-word;
+        	overflow:hidden;   
+        	    	
+        	font-family:Tahoma;
+        	color:White;
+        	
+        	cursor:pointer;
+        }
+        #pane1
+        {
+        	background-color:#D7EBAD;
+        	z-index:4;
+        }
+        #pane2
+        {
+        	background-color:#C2E184;
+        	z-index:3;
+        	
+        }
+        #pane3
+        {
+        	background-color:#AED75B;
+        	z-index:2;
+        	
+        }
+        #pane4
+        {
+        	background-color:#9ACD32;
+        	z-index:1;
+        	
+        }
+		a
+		{
+			text-decoration:none;
+			color:inherit;	
+		}
+		a:hover
+		{
+			text-decoration:underline;	
+		}
+		.label
+		{
+			position:absolute;
+        	width:200px;
+			height:200px; 
+			z-index:0;
+			text-align:right;
+			
+			margin-top:11.2em;
+			
+			font-family:Tahoma;
+			color:#9ACD32;
+			text-decoration:underline;
+			
+			top:20%;
+		}
+
+    </style>
+    </head>
+    <body onload="updatePos()" onresize="updatePos()" spellcheck="false">
+        <div class="label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;royevansia.com</div>
+        <div id="pane1" class="panel" onclick="transform()"><span style="font-size:3em;letter-spacing:0.7em">ROY</span><br />
+        <span style="font-size:3em;letter-spacing:0.4em">EVAN</span><br />
+        <span style="font-size:3em;letter-spacing:0.8em">SIA</span><br />
+        <span style="font-size:2em;letter-spacing:0.3em;line-height:0.5em">PROFILE</span></div>
+        <div id="pane2" class="panel"><span style="font-size:1em;letter-spacing:0.7em">EDUCATION</span><br />
+        <span style="font-size:1.5em;letter-spacing:0.1em">UNIVERSITY OF</span><br />
+        <span style="font-size:2em;letter-spacing:0.0em">SAN CARLOS</span><br />
+        <span style="font-size:1.1em;letter-spacing:0.009em">BACHELOR OF SCIENCE</span><br />
+        <span style="font-size:2em;letter-spacing:0.1em">COMPUTER</span><br />
+        <span style="font-size:2em;letter-spacing:0.3em">SCIENCE</span></div>
+        <div id="pane3" class="panel">
+        <div style="-webkit-transform:rotate(180deg);-o-transform:rotate(180deg);-moz-transform:rotate(180deg)"><span style="font-size:1em;letter-spacing:0.2em">WORK EXPERIENCES</span><br />
+        <span style="font-size:2em;letter-spacing:0.6em">EPSON</span><br />
+        <span style="font-size:1em;letter-spacing:0.0em">SOFTWARE ENGINEERING</span><br />
+        <span style="font-size:1em;letter-spacing:0.2em">PHILIPPINES, INC.</span><br />
+        <span style="font-size:1.6em;letter-spacing:0.05em">KYOCERA MITA</span><br />
+        <span style="font-size:0.9em;letter-spacing:0.001em">TECHNOLOGY DEVELOPMENT</span><br />
+        <span style="font-size:1em;letter-spacing:0.2em">PHILIPPINES, INC.</span><br />
+        <span style="font-size:1.35em;letter-spacing:0.0em;line-height:1.5em;">SYSTEM ENGINEER</span></div>
+        </div>
+        <div id="pane4" class="panel">
+        <div style="-webkit-transform:rotate(180deg);-o-transform:rotate(180deg);-moz-transform:rotate(180deg)"><span style="font-size:1em;letter-spacing:0.9em">CONTACTS</span><br />
+        <span style="font-size:2em;letter-spacing:0.0em">ROYSIA2004</span><br />
+        <span style="font-size:1.5em;letter-spacing:0.2em">@GMAIL.COM</span><br />
+        <a href="http://twitter.com/pr00t"><span style="font-size:1.5em;letter-spacing:0.1em">TWITTER.COM/</span><br />
+        <span style="font-size:2em;letter-spacing:0.65em">PR00T</span></a><br />
+        <a href="http://www.royevansia.com"><span style="font-size:1.1em;letter-spacing:-0.1em;line-height:2em">WWW.ROYEVANSIA.COM</span></a></div>
+        </div>
+    </body>
+</html>

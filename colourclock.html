@@ -1,0 +1,337 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>The Colour Clock</title>
+</head>
+<style type="text/css">
+	body
+	{
+		margin:5px;
+		padding:10px;
+		border: 1px solid rgba(255,255,255,0.5);
+		
+		transition-property: background-color;
+		transition-duration: 1s;
+		
+		-webkit-transition-property: background-color;
+		-webkit-transition-duration: 1s;
+		
+		-o-transition-property: background-color;
+		-o-transition-duration: 1s;
+		
+		-moz-transition-property: background-color;
+		-moz-transition-duration: 1s;	
+	}
+	@font-face
+	{
+		font-family:Vegur;
+		src:url(Vegur-Regular.ttf);	
+	}
+	a
+	{
+		text-decoration:none;
+		color:inherit;
+	}
+	a:hover
+	{
+		text-decoration:underline;	
+	}
+	.container
+	{
+		position:relative;
+		top:0px;
+		left:0px;
+		width:100%;
+		height:100%;		
+		
+		overflow:hidden;		
+	}
+	
+	.title,.footer
+	{
+		font-family:Verdana;
+		font-size:12px;
+		color:rgba(255,255,255,0.6);
+	}
+	.title
+	{
+		position:absolute;
+		top:0px;
+		left:0px;		
+		color:rgba(255,255,255,0.7);			
+	}
+	.clock
+	{
+		position:absolute;
+		margin:auto;
+		width:660px;
+		height:210px;
+		
+		overflow:hidden;
+	}
+	#footer1
+	{
+		position:absolute;		
+		height:14px;
+
+		text-align:left;	
+		z-index:1;
+	}
+	#footer2
+	{
+		position:absolute;		
+		width:100%;
+		height:14px;
+		
+		text-align:right;	
+		z-index:0;
+	}
+	
+	.clockPane
+	{
+		position:absolute;
+		top:0%;
+		left:0%;
+		width:100%;
+		height:184px;
+		
+		overflow:hidden;
+		
+		opacity:0.7;		
+		font-family:Vegur;
+		font-size:184px;
+		line-height:184px;
+		color:white;
+		text-align:center;
+		text-shadow: rgba(50,50,50,0.2) -1px -1px;
+	}
+	.timeClass
+	{
+		position:absolute;
+		top:0%;
+		left:0%;
+		width:100%;
+		height:184px;
+		
+		overflow:hidden;
+		
+		-webkit-transition-property: top;
+		-webkit-transition-duration: 1s;
+		
+		-o-transition-property: top;
+		-o-transition-duration: 1s;
+		
+		-moz-transition-property: top;
+		-moz-transition-duration: 1s;
+	}
+	.lineClass
+	{
+		position:absolute;
+		top:95%;
+		left:0px;
+		
+		width:100%;
+		height:1px;
+		background-color:rgba(255,255,255,0.7);	
+		
+		-webkit-transition-property: top;
+		-webkit-transition-duration: 1s;
+		
+		-o-transition-property: top;
+		-o-transition-duration: 1s;
+		
+		-moz-transition-property: top;
+		-moz-transition-duration: 1s;
+	}
+	.hexClass
+	{
+		position:absolute;
+		top:100%;
+		left:0%;
+		width:100%;
+		height:184px;
+		
+		overflow:hidden;
+		
+		-webkit-transition-property: top;
+		-webkit-transition-duration: 1s;	
+		
+		-o-transition-property: top;
+		-o-transition-duration: 1s;
+		
+		-moz-transition-property: top;
+		-moz-transition-duration: 1s;
+	}
+	.button
+	{
+		width:325px;
+		height:15px;
+		background-color:rgba(255,255,255,0.4);	
+		
+		cursor:pointer;
+	}
+	#button1
+	{
+		position:absolute;
+		top:190px;
+		left:0px;				
+	}
+	#button2
+	{
+		position:absolute;
+		top:190px;
+		left:335px;
+	}
+	.selected
+	{
+		background-color:rgba(255,255,255,0.6);		
+	}
+</style>
+<script src="jquery-1.4.2.min.js"></script>
+<script type="text/javascript">
+
+	var hexHour = 0, hexMin = 0, hexSec = 0;
+	var timeHour = 0, timeMin = 0, timeSec = 0;
+
+	function init()
+	{
+		positionElements();
+		window.setInterval("setClock()",1000);	
+		$("#button1").addClass("selected");
+	}
+	
+	function setClock()
+	{
+		var time = new Date();
+		var hours = time.getHours();
+		var minutes = time.getMinutes();
+		var seconds = time.getSeconds();
+		
+		hour.innerHTML = (hours < 10) ? "0" + hours : hours;
+		minute.innerHTML = (minutes < 10) ? "0" + minutes : minutes;
+		second.innerHTML = (seconds < 10) ? "0" + seconds : seconds;
+		
+		setBackground(hours,minutes,seconds);
+		
+		hexTime.innerHTML = hexHour + hexMin + hexSec;
+	}
+	
+	function positionElements()
+	{
+		$(".clock").css("top",(container.offsetHeight/2)-(clock.offsetHeight/2));
+		$(".clock").css("left",(container.offsetWidth/2) - (clock.offsetWidth/2));
+		$("#footer1").css("top",container.offsetHeight-footer1.offsetHeight);
+		$("#footer2").css("top",container.offsetHeight-footer2.offsetHeight);
+	}
+	
+	function setBackground(r,g,b)
+	{		
+		r = Math.ceil(r * 11.08);
+		g = Math.ceil(g * 4.3);
+		b = Math.ceil(b * 4.3);
+			
+		body.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+		//body.style.backgroundImage = "-webkit-gradient(radial,50% 50%,300, 50% 50%, 1200, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.5)))";
+                body.style.backgroundImage = "-webkit-gradient(radial,50% 50%,0, 50% 50%, 1200, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.3)))";
+		body.style.backgroundImage = "-moz-radial-gradient(center 45deg, circle farthest-side, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%)";
+		
+		if (timeHour != r)
+		{
+			hexHour = numToHex(r);
+			timeHour = r;
+		}
+		if (timeMin != g)
+		{
+			hexMin = numToHex(g);
+			timeMin = g;		
+		}
+		if (timeSec != b)
+		{
+			hexSec = numToHex(b);
+			timeSec = b;
+		}		
+	}
+	
+	function numToHex(num)
+	{
+		var hex = ["0","0"];
+		var index = 1;
+		do
+		{
+			hex[index] = toHex(num%16);
+			num = Math.floor(num / 16);
+			index--;
+		} while (num > 0);
+		
+		return hex.join("");
+	}
+	
+	function toHex(num)
+	{
+		var ret;
+		
+		switch(num)
+		{
+			case 10: ret = 'A'; break;
+			case 11: ret = 'B'; break;
+			case 12: ret = 'C'; break;
+			case 13: ret = 'D'; break;
+			case 14: ret = 'E'; break;
+			case 15: ret = 'F'; break;
+			default: ret = num.toString(); break;
+		}
+		
+		return ret;
+	}
+	
+	function toggleClock(flag)
+	{
+		if (flag)
+		{
+			$(".timeClass").css("top", "0");
+			$(".lineClass").css("top", "95%");
+			$(".hexClass").css("top", "100%");
+			
+			$("#button1").addClass("selected");
+			$("#button2").removeClass("selected");
+		}
+		else
+		{
+			$(".timeClass").css("top", "-100%");
+			$(".lineClass").css("top", "0");
+			$(".hexClass").css("top", "0");
+			
+			$("#button2").addClass("selected");
+			$("#button1").removeClass("selected");
+		}
+		
+	}
+</script>
+<body id="body" onLoad="init()" onResize="positionElements()">
+<div id="container" class="container">
+    <div class="title">
+        THE COLOUR CLOCK.<br />
+        <span style="color:rgba(255,255,255,0.5)">REPRESENTING TIME AS A HEXADECIMAL COLOUR VALUE.</span>
+    </div>
+    <div id="clock" class="clock">
+    	<div id="clockPane" class="clockPane">
+        	<div id="timeClass" class="timeClass">
+    			<span id="hour">00</span>:<span id="minute">00</span>:<span id="second">00</span>
+ 			</div>
+            <div class="lineClass"></div>
+            <div id="hexClass" class="hexClass">
+        		<span id="hexTime">000000</span>
+            </div>
+        </div>       
+        <div id="button1" class="button" onClick="toggleClock(true)"></div>
+        <div id="button2" class="button" onClick="toggleClock(false)"></div>
+    </div>
+    <div id="footer1" class="footer">
+    	MY NONFLASH VERSION OF <a href="http://thecolourclock.co.uk" target="_blank">THECOLOURCLOCK.CO.UK</a>
+    </div>
+    <div id="footer2" class="footer">
+    	<a href="http://www.royevansia.com">WWW.ROYEVANSIA.COM</a>
+    </div>
+</div>
+</body>
+</html>
